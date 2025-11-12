@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Htoo Aye Chan | Ethical Hacker & Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #00ff41;
+            --tertiary: #008f11;
+            --text: #e0e0e0;
+            --accent: #00ff41;
+            --glow: 0 0 10px rgba(0, 255, 65, 0.7);
+            --dark-glow: 0 0 15px rgba(0, 143, 17, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        /* Particles.js container */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        /* Terminal text styling */
+        .terminal-text {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--secondary);
+            text-shadow: var(--glow);
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0.5rem 0;
+            position: relative;
+            opacity: 0;
+        }
+        
+        .terminal-text.visible::after {
+            content: '|';
+            animation: blink 1s infinite;
+            position: absolute;
+            right: -10px;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Navigation - Glassmorphism effect */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav a.active {
+            color: var(--secondary);
+            text-shadow: var(--glow);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        /* Section styling */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--secondary);
+            text-shadow: var(--glow);
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        /* Modern card styling with glassmorphism */
+        .card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 255, 65, 0.1),
+                rgba(0, 255, 65, 0)
+            );
+            transform: rotate(30deg);
+            z-index: -1;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 15px 30px rgba(0, 255, 65, 0.2);
+        }
+        
+        .card:hover::before {
+            animation: shine 1.5s;
+        }
+        
+        @keyframes shine {
+            100% {
+                left: 150%;
+                top: 150%;
+            }
+        }
+        
+        /* Skill chart containers */
+        .skill-chart {
+            background: rgba(15, 15, 15, 0.7);
+            border: 1px solid var(--tertiary);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Certification styling */
+        .cert-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .cert-card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(0, 143, 17, 0.5);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .cert-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .cert-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Project grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background: rgba(0, 143, 17, 0.2);
+            color: var(--secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid var(--tertiary);
+        }
+        
+        /* Contact icons */
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.2);
+            text-shadow: var(--glow);
+        }
+        
+        /* Scroll indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--secondary);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .scroll-down.visible {
+            opacity: 1;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 1rem 3rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+        
+        /* Floating elements */
+        .float {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            background: rgba(0, 255, 65, 0.1);
+            color: var(--secondary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            border: 1px solid var(--secondary);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            text-shadow: none;
+        }
+        
+        .btn:hover {
+            background: rgba(0, 255, 65, 0.2);
+            box-shadow: var(--glow);
+            transform: translateY(-3px);
+        }
+        
+        /* Loading screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--tertiary);
+            border-top: 5px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            border: 1px solid var(--secondary);
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid var(--secondary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            box-shadow: var(--glow);
+            transform: rotate(30deg);
+        }
+        
+        .theme-toggle i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <p class="terminal-text">Initializing system...</p>
+    </div>
+    
+    <!-- Particles.js Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home" class="active">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#skills">SKILLS</a></li>
+            <li><a href="#projects">PROJECTS</a></li>
+            <li><a href="#certifications">CERTS</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" style="text-align: center; position: relative;">
+        <div class="fade-in">
+            <h1 class="float">HTOO AYE CHAN</h1>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem;">Ethical Hacker & Full Stack Developer</p>
+            
+            <div style="text-align: left; display: inline-block; max-width: 600px;">
+                <p id="terminal-line1" class="terminal-text">
+                    >_ Passionate about cybersecurity and development
+                </p>
+                <p id="terminal-line2" class="terminal-text">
+                    >_ Born on December 28, 2008
+                </p>
+                <p id="terminal-line3" class="terminal-text">
+                    >_ Currently 16 years old
+                </p>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <a href="#projects" class="btn">
+                    <i class="fas fa-code"></i> View My Work
+                </a>
+                <a href="#contact" class="btn" style="margin-left: 1rem;">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                </a>
+            </div>
+        </div>
+        <div id="scroll-down" class="scroll-down" onclick="scrollToSection('about')">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about">
+        <div class="card fade-in">
+            <h2>ABOUT ME</h2>
+            <p>I'm a 16-year-old cybersecurity enthusiast and developer with expertise in web development, Python scripting, and ethical hacking. My journey in technology began at a young age, and I've since developed a diverse skill set that allows me to build secure applications and analyze systems for vulnerabilities.</p>
+            
+            <div style="margin-top: 2rem;">
+                <h3>MY MISSION</h3>
+                <p>To leverage my skills in cybersecurity and development to create secure digital solutions while continuously expanding my knowledge in the ever-evolving tech landscape.</p>
+            </div>
+            
+            <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+                <div class="tooltip">
+                    <span class="tech-tag"><i class="fas fa-birthday-cake"></i> 16 years</span>
+                    <span class="tooltiptext">Born December 28, 2008</span>
+                </div>
+                <div class="tooltip">
+                    <span class="tech-tag"><i class="fas fa-map-marker-alt"></i> Thailand</span>
+                    <span class="tooltiptext">Based in Thailand</span>
+                </div>
+                <div class="tooltip">
+                    <span class="tech-tag"><i class="fas fa-laptop-code"></i> 5+ years coding</span>
+                    <span class="tooltiptext">Started coding at age 11</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>MY SKILLS</h2>
+        <div class="skill-chart fade-in">
+            <canvas id="skillsChart"></canvas>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 2rem;">
+            <!-- Skill items with icons -->
+            <div class="card fade-in delay-1" style="text-align: center;">
+                <i class="fab fa-html5" style="font-size: 3rem; color: var(--secondary);"></i>
+                <h3>HTML5</h3>
+                <div class="skill-bar">
+                    <div style="height: 5px; background: var(--tertiary); width: 100%; border-radius: 5px;">
+                        <div style="height: 100%; width: 90%; background: var(--secondary); border-radius: 5px;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: var(--secondary);">90%</p>
+                </div>
+            </div>
+            <div class="card fade-in delay-2" style="text-align: center;">
+                <i class="fab fa-css3-alt" style="font-size: 3rem; color: var(--secondary);"></i>
+                <h3>CSS3</h3>
+                <div class="skill-bar">
+                    <div style="height: 5px; background: var(--tertiary); width: 100%; border-radius: 5px;">
+                        <div style="height: 100%; width: 85%; background: var(--secondary); border-radius: 5px;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: var(--secondary);">85%</p>
+                </div>
+            </div>
+            <div class="card fade-in delay-3" style="text-align: center;">
+                <i class="fab fa-js" style="font-size: 3rem; color: var(--secondary);"></i>
+                <h3>JavaScript</h3>
+                <div class="skill-bar">
+                    <div style="height: 5px; background: var(--tertiary); width: 100%; border-radius: 5px;">
+                        <div style="height: 100%; width: 80%; background: var(--secondary); border-radius: 5px;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: var(--secondary);">80%</p>
+                </div>
+            </div>
+            <div class="card fade-in delay-4" style="text-align: center;">
+                <i class="fab fa-python" style="font-size: 3rem; color: var(--secondary);"></i>
+                <h3>Python</h3>
+                <div class="skill-bar">
+                    <div style="height: 5px; background: var(--tertiary); width: 100%; border-radius: 5px;">
+                        <div style="height: 100%; width: 95%; background: var(--secondary); border-radius: 5px;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: var(--secondary);">95%</p>
+                </div>
+            </div>
+            <div class="card fade-in delay-1" style="text-align: center;">
+                <i class="fas fa-terminal" style="font-size: 3rem; color: var(--secondary);"></i>
+                <h3>Bash</h3>
+                <div class="skill-bar">
+                    <div style="height: 5px; background: var(--tertiary); width: 100%; border-radius: 5px;">
+                        <div style="height: 100%; width: 75%; background: var(--secondary); border-radius: 5px;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: var(--secondary);">75%</p>
+                </div>
+            </div>
+            <div class="card fade-in delay-2" style="text-align: center;">
+                <i class="fas fa-code" style="font-size: 3rem; color: var(--secondary);"></i>
+                <h3>C++</h3>
+                <div class="skill-bar">
+                    <div style="height: 5px; background: var(--tertiary); width: 100%; border-radius: 5px;">
+                        <div style="height: 100%; width: 70%; background: var(--secondary); border-radius: 5px;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: var(--secondary);">70%</p>
+                </div>
+            </div>
+            <div class="card fade-in delay-3" style="text-align: center;">
+                <i class="fas fa-shield-alt" style="font-size: 3rem; color: var(--secondary);"></i>
+                <h3>Pentesting</h3>
+                <div class="skill-bar">
+                    <div style="height: 5px; background: var(--tertiary); width: 100%; border-radius: 5px;">
+                        <div style="height: 100%; width: 85%; background: var(--secondary); border-radius: 5px;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: var(--secondary);">85%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>MY PROJECTS</h2>
+        <div class="project-grid">
+            <!-- All your projects -->
+            <div class="card fade-in">
+                <h3>Password Strength Analyzer</h3>
+                <p>A tool that evaluates password strength using advanced algorithms and pattern recognition.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Security</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-1">
+                <h3>Crack Password (PDF,ZIP,RAR)</h3>
+                <p>Utility for recovering lost passwords from encrypted archives using brute-force and dictionary attacks.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Bash</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-2">
+                <h3>DDOS Traffic Simulation</h3>
+                <p>Educational tool demonstrating DDoS attack patterns and network stress testing.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Networking</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-3">
+                <h3>Email Spoofing Detection</h3>
+                <p>System to identify and prevent email spoofing attempts by analyzing headers and content.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Security</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-4">
+                <h3>File Virus & Safety Analyzer</h3>
+                <p>Security tool for scanning files for potential threats using signature and heuristic analysis.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">C++</span>
+                </div>
+            </div>
+            <div class="card fade-in">
+                <h3>Control YouTube with Hands</h3>
+                <p>Gesture-based YouTube controller using computer vision and mediapipe library.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OpenCV</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-1">
+                <h3>Hypersearch</h3>
+                <p>Advanced search tool that aggregates results from multiple search engines simultaneously.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-2">
+                <h3>Mega Data</h3>
+                <p>Data analysis and visualization tool for large datasets with efficient processing.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Pandas</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-3">
+                <h3>Drawing on Air</h3>
+                <p>Augmented reality application that allows drawing in 3D space using hand gestures.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OpenGL</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-4">
+                <h3>Phishing (Kronos)</h3>
+                <p>Educational demonstration of phishing techniques for security awareness training.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML/CSS</span>
+                </div>
+            </div>
+            <div class="card fade-in">
+                <h3>Phone Number Analyze</h3>
+                <p>Tool for gathering information about phone numbers and their potential origins.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">APIs</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-1">
+                <h3>Reverse Shell Generator</h3>
+                <p>Security tool for generating customized reverse shell payloads for penetration testing.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Bash</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-2">
+                <h3>Websites Analyzer</h3>
+                <p>Comprehensive tool for analyzing website structure, performance, and security.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-3">
+                <h3>Websites Source Extraction</h3>
+                <p>Tool for extracting and organizing source code from websites for analysis.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Web Scraping</span>
+                </div>
+            </div>
+            <div class="card fade-in delay-4">
+                <h3>Websites Vulnerabilities Checker</h3>
+                <p>Automated scanner for common web vulnerabilities like XSS, SQLi, and CSRF.</p>
+                <div class="tech-used">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Security</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <h2>CERTIFICATIONS</h2>
+        <div class="cert-container">
+            <!-- Your existing certifications -->
+            <div class="cert-card fade-in">
+                <img src="Cisco.png" alt="Cisco Certification">
+                <h3>Cisco Certified</h3>
+                <p>Networking and security fundamentals</p>
+            </div>
+            <div class="cert-card fade-in delay-1">
+                <img src="CISSP.jpg" alt="CISSP Certification">
+                <h3>CISSP</h3>
+                <p>Information systems security</p>
+            </div>
+            <div class="cert-card fade-in delay-2">
+                <img src="coursera.png" alt="Coursera Certification">
+                <h3>Cybersecurity Operations Fundamentals</h3>
+                <p>Advanced programming</p>
+            </div>
+            <div class="cert-card fade-in delay-3">
+                <img src="coursera2.png" alt="Coursera Certification 2">
+                <h3>Coursera</h3>
+                <p>HTML,CSS,Javascript</p>
+            </div>
+            <div class="cert-card fade-in delay-4">
+                <img src="Screenshot 2025-07-11 001819.png" alt="Networking">
+                <h3>Networking</h3>
+                <p>Advanced Networking</p>
+            </div>
+            <div class="cert-card fade-in">
+                <img src="Screenshot 2025-07-11 001918.png" alt="Data Science Math Skills">
+                <h3>Data Science Math Skills</h3>
+                <p>Data Science</p>
+            </div>
+            <div class="cert-card fade-in delay-1">
+                <img src="The Complete Python.jpg" alt="Python Complete Certification">
+                <h3>Complete Python</h3>
+                <p>Full Python development</p>
+            </div>
+            
+            <!-- Your new certifications -->
+            <div class="cert-card fade-in delay-2">
+                <img src="D:\SLT(ACT)\MYTOOLS\My portfolio\Cyber Threat Management.png" alt="Cyber Threat Management">
+                <h3>Cyber Threat Management</h3>
+                <p>Threat detection and response</p>
+            </div>
+            <div class="cert-card fade-in delay-3">
+                <img src="D:\SLT(ACT)\MYTOOLS\My portfolio\Cybersecurity Essentials.png" alt="Cybersecurity Essentials">
+                <h3>Cybersecurity Essentials</h3>
+                <p>Fundamental security principles</p>
+            </div>
+            <div class="cert-card fade-in delay-4">
+                <img src="D:\SLT(ACT)\MYTOOLS\My portfolio\Endpoint Security.png" alt="Endpoint Security">
+                <h3>Endpoint Security</h3>
+                <p>Device protection strategies</p>
+            </div>
+            <div class="cert-card fade-in">
+                <img src="D:\SLT(ACT)\MYTOOLS\My portfolio\Introduction to Cybersecurity.png" alt="Introduction to Cybersecurity">
+                <h3>Introduction to Cybersecurity</h3>
+                <p>Cybersecurity fundamentals</p>
+            </div>
+            <div class="cert-card fade-in delay-1">
+                <img src="D:\SLT(ACT)\MYTOOLS\My portfolio\Network Defense.png" alt="Network Defense">
+                <h3>Network Defense</h3>
+                <p>Network security strategies</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" style="text-align: center;">
+        <h2>CONTACT ME</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            <div class="card contact-card fade-in">
+                <i class="fas fa-phone contact-icon"></i>
+                <h3>PHONE</h3>
+                <p>+66 94 616 2877</p>
+                <a href="tel:+66946162877" class="btn" style="display: inline-block; margin-top: 0.5rem;">
+                    <i class="fas fa-phone"></i> Call Me
+                </a>
+            </div>
+            <div class="card contact-card fade-in delay-1">
+                <i class="fas fa-envelope contact-icon"></i>
+                <h3>EMAIL</h3>
+                <p>htoo45627@gmail.com</p>
+                <a href="mailto:htoo45627@gmail.com" class="btn" style="display: inline-block; margin-top: 0.5rem;">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+            </div>
+            <div class="card contact-card fade-in delay-2">
+                <i class="fab fa-facebook contact-icon"></i>
+                <h3>FACEBOOK</h3>
+                <p>Connect with me</p>
+                <a href="https://web.facebook.com/profile.php?id=100078324002741" class="btn" style="display: inline-block; margin-top: 0.5rem;">
+                    <i class="fab fa-facebook"></i> Visit Profile
+                </a>
+            </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="card fade-in delay-3" style="margin-top: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <h3>SEND ME A MESSAGE</h3>
+            <form id="contactForm" style="margin-top: 1rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <input type="text" placeholder="Your Name" required style="padding: 0.8rem; border-radius: 5px; border: 1px solid var(--tertiary); background: rgba(20, 20, 20, 0.5); color: var(--text);">
+                    <input type="email" placeholder="Your Email" required style="padding: 0.8rem; border-radius: 5px; border: 1px solid var(--tertiary); background: rgba(20, 20, 20, 0.5); color: var(--text);">
+                </div>
+                <input type="text" placeholder="Subject" style="padding: 0.8rem; border-radius: 5px; border: 1px solid var(--tertiary); background: rgba(20, 20, 20, 0.5); color: var(--text); width: 100%; margin-bottom: 1rem;">
+                <textarea placeholder="Your Message" rows="5" required style="padding: 0.8rem; border-radius: 5px; border: 1px solid var(--tertiary); background: rgba(20, 20, 20, 0.5); color: var(--text); width: 100%; margin-bottom: 1rem;"></textarea>
+                <button type="submit" class="btn" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+            <div id="formMessage" style="margin-top: 1rem;"></div>
+        </div>
+    </section>
+    
+    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--secondary); background: rgba(10, 10, 10, 0.9);">
+        <p style="margin: 0;">© 2025 Htoo Aye Chan. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--tertiary);">>_ Keep coding, keep hacking (ethically)!</p>
+        <div style="margin-top: 1rem;">
+            <a href="#home" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                <i class="fas fa-arrow-up"></i> Back to Top
+            </a>
+        </div>
+    </footer>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loading-screen').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+        
+        // Particles.js configuration
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#00ff41" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#008f11", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "grab" },
+                        onclick: { enable: true, mode: "push" }
+                    }
+                }
+            });
+            
+            // Terminal typing animation
+            const terminalLines = [
+                { id: 'terminal-line1', text: '>_ Passionate about cybersecurity and development' },
+                { id: 'terminal-line2', text: '>_ Born on December 28, 2008' },
+                { id: 'terminal-line3', text: '>_ Currently 16 years old' }
+            ];
+            
+            terminalLines.forEach((line, index) => {
+                const element = document.getElementById(line.id);
+                const content = line.text;
+                element.textContent = '';
+                element.style.width = content.length + 'ch';
+                
+                setTimeout(() => {
+                    element.style.animation = `typing 2s steps(${content.length}) forwards, blink 1s infinite ${2 + index * 2}s`;
+                    element.classList.add('visible');
+                }, index * 2000);
+            });
+            
+            // Scroll down button visibility
+            setTimeout(() => {
+                document.getElementById('scroll-down').classList.add('visible');
+            }, 6000);
+            
+            // Skills chart
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['HTML', 'CSS', 'JavaScript', 'Python', 'Bash', 'C++', 'Pentesting'],
+                    datasets: [{
+                        data: [90, 85, 80, 95, 75, 70, 85],
+                        backgroundColor: [
+                            'rgba(0, 255, 65, 0.7)',
+                            'rgba(0, 255, 65, 0.6)',
+                            'rgba(0, 255, 65, 0.5)',
+                            'rgba(0, 255, 65, 0.8)',
+                            'rgba(0, 255, 65, 0.4)',
+                            'rgba(0, 255, 65, 0.3)',
+                            'rgba(0, 255, 65, 0.6)'
+                        ],
+                        borderColor: 'rgba(10, 10, 10, 0.8)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: {
+                                    family: "'Share Tech Mono', monospace",
+                                    size: 14
+                                },
+                                color: '#00ff41',
+                                padding: 20
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+            
+            // Active nav link based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission (in a real app, you would use AJAX/Fetch)
+                formMessage.textContent = 'Message sent successfully!';
+                formMessage.style.color = '#00ff41';
+                
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                    contactForm.reset();
+                }, 3000);
+            });
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('light-mode');
+                
+                if (document.body.classList.contains('light-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+            
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+        
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            window.scrollTo({
+                top: section.offsetTop - 70,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
